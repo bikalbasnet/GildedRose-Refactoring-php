@@ -17,6 +17,15 @@ final class GildedRose
     public function updateInventory(): void
     {
         foreach ($this->items as $item) {
+            if ($item->name === 'Aged Brie') {
+                $itemObj = ItemFactory::create($item);
+                $itemObj->updateItemQuality();
+
+                $item->sellIn = $itemObj->getSellIn();
+                $item->quality = $itemObj->getQuality();
+                return;
+            }
+
             $this->updateItem($item);
         }
     }
@@ -27,9 +36,7 @@ final class GildedRose
             return;
         }
 
-        $this->incrementItemQuality($item);
-        $this->decrementItemQuality($item);
-
+        $this->updateItemQuality($item);
         $this->updateSellin($item);
     }
 
@@ -71,7 +78,7 @@ final class GildedRose
         }
 
         $newQuality = $item->quality + $increment;
-        $item->quality = $newQuality >= 50 ? 50 : $newQuality;
+        $item->quality = min($newQuality, 50);
     }
 
     /**
@@ -95,5 +102,15 @@ final class GildedRose
         if ($item->quality > 0) {
             $item->quality = $item->quality - $decrement;
         }
+    }
+
+    /**
+     * @param Item $item
+     * @return void
+     */
+    public function updateItemQuality(Item $item): void
+    {
+        $this->incrementItemQuality($item);
+        $this->decrementItemQuality($item);
     }
 }
