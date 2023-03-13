@@ -14,7 +14,7 @@ final class GildedRose
     ) {
     }
 
-    public function updateQuality(): void
+    public function updateInventory(): void
     {
         foreach ($this->items as $item) {
             $this->updateItem($item);

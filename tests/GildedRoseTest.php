@@ -17,7 +17,7 @@ class GildedRoseTest extends TestCase
         $standardItem = new Item('Elixir of the Mongoose', $startingSellin, $startingQuality);
         $subject = new GildedRose([$standardItem]);
 
-        $subject->updateQuality();
+        $subject->updateInventory();
 
         $this->assertEquals($startingSellin - 1, $standardItem->sellIn);
         $this->assertEquals($startingQuality - 1, $standardItem->quality);
@@ -29,7 +29,7 @@ class GildedRoseTest extends TestCase
         $secondItem = new Item('Second Standard Item', 3, 2);
         $subject = new GildedRose([$firstItem, $secondItem]);
 
-        $subject->updateQuality();
+        $subject->updateInventory();
 
         $this->assertEquals(4, $firstItem->sellIn);
         $this->assertEquals(3, $firstItem->quality);
@@ -42,7 +42,7 @@ class GildedRoseTest extends TestCase
         $item = new Item('Standard Item', -1, 4);
         $subject = new GildedRose([$item]);
 
-        $subject->updateQuality();
+        $subject->updateInventory();
 
         $this->assertEquals(2, $item->quality);
     }
@@ -52,7 +52,7 @@ class GildedRoseTest extends TestCase
         $item = new Item('Standard Item', 1, 4);
         $subject = new GildedRose([$item]);
 
-        $subject->updateQuality();
+        $subject->updateInventory();
 
         $this->assertEquals(3, $item->quality);
     }
@@ -62,7 +62,7 @@ class GildedRoseTest extends TestCase
         $item = new Item('Standard Item', 4, 1);
         $subject = new GildedRose([$item]);
 
-        $subject->updateQuality();
+        $subject->updateInventory();
 
         $this->assertEquals(0, $item->quality);
     }
@@ -72,7 +72,7 @@ class GildedRoseTest extends TestCase
         $item = new Item('First Standard Item', 4, 0);
         $subject = new GildedRose([$item]);
 
-        $subject->updateQuality();
+        $subject->updateInventory();
 
         $this->assertEquals(0, $item->quality);
     }
@@ -82,7 +82,7 @@ class GildedRoseTest extends TestCase
         $item = new Item('Aged Brie', 5, 6);
         $subject = new GildedRose([$item]);
 
-        $subject->updateQuality();
+        $subject->updateInventory();
 
         $this->assertEquals(7, $item->quality);
     }
@@ -92,7 +92,7 @@ class GildedRoseTest extends TestCase
         $item = new Item('Aged Brie', 5, 49);
         $subject = new GildedRose([$item]);
 
-        $subject->updateQuality();
+        $subject->updateInventory();
 
         $this->assertEquals(50, $item->quality);
     }
@@ -102,7 +102,7 @@ class GildedRoseTest extends TestCase
         $item = new Item('Aged Brie', 5, 50);
         $subject = new GildedRose([$item]);
 
-        $subject->updateQuality();
+        $subject->updateInventory();
 
         $this->assertEquals(50, $item->quality);
     }
@@ -112,7 +112,7 @@ class GildedRoseTest extends TestCase
         $item = new Item('Aged Brie', 0, 6);
         $subject = new GildedRose([$item]);
 
-        $subject->updateQuality();
+        $subject->updateInventory();
 
         $this->assertEquals(8, $item->quality);
     }
@@ -122,7 +122,7 @@ class GildedRoseTest extends TestCase
         $item = new Item('Aged Brie', 0, 50);
         $subject = new GildedRose([$item]);
 
-        $subject->updateQuality();
+        $subject->updateInventory();
 
         $this->assertEquals(50, $item->quality);
     }
@@ -132,7 +132,7 @@ class GildedRoseTest extends TestCase
         $item = new Item('Sulfuras, Hand of Ragnaros', -1, 80);
         $subject = new GildedRose([$item]);
 
-        $subject->updateQuality();
+        $subject->updateInventory();
 
         $this->assertEquals(-1, $item->sellIn);
     }
@@ -142,7 +142,7 @@ class GildedRoseTest extends TestCase
         $item = new Item('Sulfuras, Hand of Ragnaros', -1, 80);
         $subject = new GildedRose([$item]);
 
-        $subject->updateQuality();
+        $subject->updateInventory();
 
         $this->assertEquals(80, $item->quality);
     }
@@ -152,7 +152,7 @@ class GildedRoseTest extends TestCase
         $item = new Item('Backstage passes to a TAFKAL80ETC concert', 15, 20);
         $subject = new GildedRose([$item]);
 
-        $subject->updateQuality();
+        $subject->updateInventory();
 
         $this->assertEquals(21, $item->quality);
     }
@@ -162,7 +162,7 @@ class GildedRoseTest extends TestCase
         $item = new Item('Backstage passes to a TAFKAL80ETC concert', 11, 48);
         $subject = new GildedRose([$item]);
 
-        $subject->updateQuality();
+        $subject->updateInventory();
 
         $this->assertEquals(49, $item->quality);
     }
@@ -172,7 +172,7 @@ class GildedRoseTest extends TestCase
         $item = new Item('Backstage passes to a TAFKAL80ETC concert', 10, 20);
         $subject = new GildedRose([$item]);
 
-        $subject->updateQuality();
+        $subject->updateInventory();
 
         $this->assertEquals(22, $item->quality);
     }
@@ -182,7 +182,7 @@ class GildedRoseTest extends TestCase
         $item = new Item('Backstage passes to a TAFKAL80ETC concert', 10, 49);
         $subject = new GildedRose([$item]);
 
-        $subject->updateQuality();
+        $subject->updateInventory();
 
         $this->assertEquals(50, $item->quality);
     }
@@ -192,7 +192,7 @@ class GildedRoseTest extends TestCase
         $item = new Item('Backstage passes to a TAFKAL80ETC concert', 6, 20);
         $subject = new GildedRose([$item]);
 
-        $subject->updateQuality();
+        $subject->updateInventory();
 
         $this->assertEquals(22, $item->quality);
     }
@@ -202,7 +202,7 @@ class GildedRoseTest extends TestCase
         $item = new Item('Backstage passes to a TAFKAL80ETC concert', 5, 20);
         $subject = new GildedRose([$item]);
 
-        $subject->updateQuality();
+        $subject->updateInventory();
 
         $this->assertEquals(23, $item->quality);
     }
@@ -212,7 +212,7 @@ class GildedRoseTest extends TestCase
         $item = new Item('Backstage passes to a TAFKAL80ETC concert', 5, 49);
         $subject = new GildedRose([$item]);
 
-        $subject->updateQuality();
+        $subject->updateInventory();
 
         $this->assertEquals(50, $item->quality);
     }
@@ -222,7 +222,7 @@ class GildedRoseTest extends TestCase
         $item = new Item('Backstage passes to a TAFKAL80ETC concert', 5, 50);
         $subject = new GildedRose([$item]);
 
-        $subject->updateQuality();
+        $subject->updateInventory();
 
         $this->assertEquals(50, $item->quality);
     }
@@ -232,7 +232,7 @@ class GildedRoseTest extends TestCase
         $item = new Item('Backstage passes to a TAFKAL80ETC concert', 0, 20);
         $subject = new GildedRose([$item]);
 
-        $subject->updateQuality();
+        $subject->updateInventory();
 
         $this->assertEquals(0, $item->quality);
     }
