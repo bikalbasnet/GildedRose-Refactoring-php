@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace GildedRose\Item;
 
-class AgedBrie implements ItemInterface
+class Sulfuras implements ItemInterface
 {
     public function __construct(
         private int $sellIn,
@@ -14,19 +14,10 @@ class AgedBrie implements ItemInterface
 
     public function updateItemQuality(): void
     {
-        if ($this->quality >= 50) {
-            return;
-        }
-
-        $increment = ($this->sellIn <= 0) ? 2 : 1;
-
-        $newQuality = $this->quality + $increment;
-        $this->quality = min($newQuality, 50);
     }
 
     public function updateSellin(): void
     {
-        $this->sellIn = $this->sellIn - 1;
     }
 
     public function getQuality(): int
@@ -38,4 +29,7 @@ class AgedBrie implements ItemInterface
     {
         return $this->sellIn;
     }
+}
+{
+
 }

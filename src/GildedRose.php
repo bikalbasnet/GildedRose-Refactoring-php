@@ -17,16 +17,12 @@ final class GildedRose
     public function updateInventory(): void
     {
         foreach ($this->items as $item) {
-            if ($item->name === 'Aged Brie') {
-                $itemObj = ItemFactory::create($item);
-                $itemObj->updateItemQuality();
+            $itemObj = ItemFactory::create($item);
+            $itemObj->updateItemQuality();
+            $itemObj->updateSellin();
 
-                $item->sellIn = $itemObj->getSellIn();
-                $item->quality = $itemObj->getQuality();
-                return;
-            }
-
-            $this->updateItem($item);
+            $item->sellIn = $itemObj->getSellIn();
+            $item->quality = $itemObj->getQuality();
         }
     }
 

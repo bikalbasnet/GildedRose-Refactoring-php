@@ -97,6 +97,16 @@ class GildedRoseTest extends TestCase
         $this->assertEquals(50, $item->quality);
     }
 
+    public function testAgedItemQualityIsNeverGreaterThan50WhenSellinIsNegative(): void
+    {
+        $item = new Item('Aged Brie', -1, 49);
+        $subject = new GildedRose([$item]);
+
+        $subject->updateInventory();
+
+        $this->assertEquals(50, $item->quality);
+    }
+
     public function testQualityOfAnItemIsNeverGreaterThan50(): void
     {
         $item = new Item('Aged Brie', 5, 50);
