@@ -28,19 +28,9 @@ final class GildedRose
         }
 
         $this->incrementItemQuality($item);
-
         $this->decrementItemQuality($item);
+
         $this->updateSellin($item);
-
-        if ($item->sellIn >= 0)
-        {
-            return;
-        }
-
-
-        //
-
-        $this->decrementItemQuality($item);
     }
 
     /**
@@ -100,8 +90,10 @@ final class GildedRose
             return;
         }
 
+        $decrement = ($item->sellIn <= 0) ? 2: 1;
+
         if ($item->quality > 0) {
-            $item->quality = $item->quality - 1;
+            $item->quality = $item->quality - $decrement;
         }
     }
 }
