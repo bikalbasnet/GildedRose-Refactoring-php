@@ -27,15 +27,10 @@ final class GildedRose
             return;
         }
 
-        if ($item->name !== 'Aged Brie' and $item->name !== 'Backstage passes to a TAFKAL80ETC concert') {
-            $this->decrementItemQuality($item);
-        } else if ($item->quality < 50) {
-            $item->quality = $item->quality + 1;
-            if ($item->name === 'Backstage passes to a TAFKAL80ETC concert') {
-                $this->updateBackStageQuality($item);
-            }
-        }
+        $this->incrementItemQuality($item);
+        $this->decrementItemQuality($item);
 
+        $this->updateBackStageQuality($item);
         $this->updateSellin($item);
 
         if ($item->sellIn >= 0)
@@ -43,17 +38,7 @@ final class GildedRose
             return;
         }
 
-
-        //
-
-        if ($item->name === 'Backstage passes to a TAFKAL80ETC concert') {
-            $item->quality = $item->quality - $item->quality;
-        }
-
-
         $this->incrementItemQuality($item);
-
-
         $this->decrementItemQuality($item);
     }
 
@@ -63,6 +48,11 @@ final class GildedRose
      */
     public function updateBackStageQuality(Item $item): void
     {
+        if ($item->name !== 'Backstage passes to a TAFKAL80ETC concert')
+        {
+            return;
+        }
+
         if ($item->sellIn <= 10) {
             $this->incrementItemQuality($item);
         }
@@ -102,7 +92,12 @@ final class GildedRose
      */
     public function decrementItemQuality(Item $item): void
     {
-        if ($item->name === "Aged Brie")
+        if ($item->sellIn <= 0 && $item->name === 'Backstage passes to a TAFKAL80ETC concert')
+        {
+            $item->quality = 0;
+        }
+
+        if ($item->name === "Aged Brie" || $item->name === 'Backstage passes to a TAFKAL80ETC concert')
         {
             return;
         }
