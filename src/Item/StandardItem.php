@@ -7,8 +7,8 @@ namespace GildedRose\Item;
 class StandardItem implements ItemInterface
 {
     public function __construct(
-        private int $sellIn,
-        private int $quality,
+        protected int $sellIn,
+        protected int $quality,
     ) {
     }
 

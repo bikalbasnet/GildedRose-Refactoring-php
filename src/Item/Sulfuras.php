@@ -4,14 +4,8 @@ declare(strict_types=1);
 
 namespace GildedRose\Item;
 
-class Sulfuras implements ItemInterface
+class Sulfuras extends StandardItem implements ItemInterface
 {
-    public function __construct(
-        private int $sellIn,
-        private int $quality,
-    ) {
-    }
-
     public function updateItemQuality(): void
     {
     }
@@ -19,17 +13,4 @@ class Sulfuras implements ItemInterface
     public function updateSellin(): void
     {
     }
-
-    public function getQuality(): int
-    {
-        return $this->quality;
-    }
-
-    public function getSellIn(): int
-    {
-        return $this->sellIn;
-    }
-}
-{
-
 }
