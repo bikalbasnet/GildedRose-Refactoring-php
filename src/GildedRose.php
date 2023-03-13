@@ -17,51 +17,98 @@ final class GildedRose
     public function updateQuality(): void
     {
         foreach ($this->items as $item) {
-            if ($item->name !== 'Aged Brie' and $item->name !== 'Backstage passes to a TAFKAL80ETC concert') {
-                if ($item->quality > 0) {
-                    if ($item->name !== 'Sulfuras, Hand of Ragnaros') {
-                        $item->quality = $item->quality - 1;
-                    }
-                }
-            } else {
-                if ($item->quality < 50) {
-                    $item->quality = $item->quality + 1;
-                    if ($item->name === 'Backstage passes to a TAFKAL80ETC concert') {
-                        if ($item->sellIn < 11) {
-                            if ($item->quality < 50) {
-                                $item->quality = $item->quality + 1;
-                            }
-                        }
-                        if ($item->sellIn < 6) {
-                            if ($item->quality < 50) {
-                                $item->quality = $item->quality + 1;
-                            }
-                        }
-                    }
-                }
-            }
+            $this->updateItem($item);
+        }
+    }
 
-            if ($item->name !== 'Sulfuras, Hand of Ragnaros') {
-                $item->sellIn = $item->sellIn - 1;
-            }
+    public function updateItem(Item $item): void
+    {
+        if ($item->name === 'Sulfuras, Hand of Ragnaros') {
+            return;
+        }
 
-            if ($item->sellIn < 0) {
-                if ($item->name !== 'Aged Brie') {
-                    if ($item->name !== 'Backstage passes to a TAFKAL80ETC concert') {
-                        if ($item->quality > 0) {
-                            if ($item->name !== 'Sulfuras, Hand of Ragnaros') {
-                                $item->quality = $item->quality - 1;
-                            }
-                        }
-                    } else {
-                        $item->quality = $item->quality - $item->quality;
-                    }
-                } else {
-                    if ($item->quality < 50) {
-                        $item->quality = $item->quality + 1;
-                    }
-                }
+        if ($item->name !== 'Aged Brie' and $item->name !== 'Backstage passes to a TAFKAL80ETC concert') {
+            $this->decrementItemQuality($item);
+        } else if ($item->quality < 50) {
+            $item->quality = $item->quality + 1;
+            if ($item->name === 'Backstage passes to a TAFKAL80ETC concert') {
+                $this->updateBackStageQuality($item);
             }
+        }
+
+        $this->updateSellin($item);
+
+        if ($item->sellIn >= 0)
+        {
+            return;
+        }
+
+
+        //
+
+        if ($item->name === 'Backstage passes to a TAFKAL80ETC concert') {
+            $item->quality = $item->quality - $item->quality;
+        }
+
+
+        $this->incrementItemQuality($item);
+
+
+        $this->decrementItemQuality($item);
+    }
+
+    /**
+     * @param Item $item
+     * @return void
+     */
+    public function updateBackStageQuality(Item $item): void
+    {
+        if ($item->sellIn <= 10) {
+            $this->incrementItemQuality($item);
+        }
+        if ($item->sellIn <= 5) {
+            $this->incrementItemQuality($item);
+        }
+    }
+
+    /**
+     * @param Item $item
+     * @return void
+     */
+    public function updateSellin(Item $item): void
+    {
+        $item->sellIn = $item->sellIn - 1;
+    }
+
+    /**
+     * @param Item $item
+     * @return void
+     */
+    public function incrementItemQuality(Item $item): void
+    {
+        if ($item->name !== 'Aged Brie' && $item->name !== 'Backstage passes to a TAFKAL80ETC concert')
+        {
+            return;
+        }
+
+        if ($item->quality < 50) {
+            $item->quality = $item->quality + 1;
+        }
+    }
+
+    /**
+     * @param Item $item
+     * @return void
+     */
+    public function decrementItemQuality(Item $item): void
+    {
+        if ($item->name === "Aged Brie")
+        {
+            return;
+        }
+
+        if ($item->quality > 0) {
+            $item->quality = $item->quality - 1;
         }
     }
 }
