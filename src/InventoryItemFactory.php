@@ -6,6 +6,7 @@ namespace GildedRose;
 
 use GildedRose\Item\AgedBrie;
 use GildedRose\Item\BackstagePasses;
+use GildedRose\Item\Conjured;
 use GildedRose\Item\ItemInterface;
 use GildedRose\Item\Sulfuras;
 use GildedRose\Item\StandardItem;
@@ -19,6 +20,7 @@ class InventoryItemFactory
             'Aged Brie' => new AgedBrie($item),
             'Backstage passes to a TAFKAL80ETC concert' => new BackstagePasses($item),
             'Sulfuras, Hand of Ragnaros' => new Sulfuras($item),
+            'Conjured Mana Cake' => new Conjured($item),
         };
     }
 }

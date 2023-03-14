@@ -246,4 +246,25 @@ class GildedRoseTest extends TestCase
 
         $this->assertEquals(0, $item->quality);
     }
+
+    public function testConjuredItemsDegradedTwiceAsFast(): void
+    {
+        $item = new Item('Conjured Mana Cake', 3, 6);
+        $subject = new GildedRose([$item]);
+
+        $subject->updateInventory();
+
+        $this->assertEquals(4, $item->quality);
+    }
+
+    public function testConjuredItemsQualityStaysAtZeroAfterSellInDate(): void
+    {
+        $item = new Item('Conjured Mana Cake', -3, 0);
+        $subject = new GildedRose([$item]);
+
+        $subject->updateInventory();
+
+        $this->assertEquals(0, $item->quality);
+        $this->assertEquals(-4, $item->sellIn);
+    }
 }
