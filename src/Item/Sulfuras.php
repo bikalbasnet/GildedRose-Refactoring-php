@@ -6,13 +6,13 @@ namespace GildedRose\Item;
 
 class Sulfuras extends AbstractItem implements ItemInterface
 {
+    public function updateSellin(): void
+    {
+    }
+
     protected function getNewQuality(): int
     {
         return $this->item->quality;
-    }
-
-    public function updateSellin(): void
-    {
     }
 
     protected function getHighestQuality(): int

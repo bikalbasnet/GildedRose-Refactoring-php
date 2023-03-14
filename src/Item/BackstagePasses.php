@@ -12,8 +12,8 @@ class BackstagePasses extends AbstractItem implements ItemInterface
             return 0;
         }
 
-        $increment = match(true) {
-            $this->item->sellIn <=5 => 3,
+        $increment = match (true) {
+            $this->item->sellIn <= 5 => 3,
             $this->item->sellIn <= 10 => 2,
             default => 1,
         };

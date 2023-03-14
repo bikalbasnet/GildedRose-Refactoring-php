@@ -8,8 +8,8 @@ use GildedRose\Item\AgedBrie;
 use GildedRose\Item\BackstagePasses;
 use GildedRose\Item\Conjured;
 use GildedRose\Item\ItemInterface;
-use GildedRose\Item\Sulfuras;
 use GildedRose\Item\StandardItem;
+use GildedRose\Item\Sulfuras;
 
 class InventoryItemFactory
 {
