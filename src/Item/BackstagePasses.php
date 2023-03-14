@@ -9,8 +9,7 @@ class BackstagePasses extends AbstractItem implements ItemInterface
     protected function getNewQuality(): int
     {
         if ($this->item->sellIn <= 0) {
-            $this->item->quality = 0;
-            return $this->item->quality;
+            return 0;
         }
 
         $increment = match(true) {
