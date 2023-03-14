@@ -6,7 +6,7 @@ namespace GildedRose\Item;
 
 class AgedBrie extends AbstractItem implements ItemInterface
 {
-    public function getNewQuality(): int
+    protected function getNewQuality(): int
     {
         $increment = ($this->item->sellIn <= 0) ? 2 : 1;
 

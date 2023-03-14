@@ -6,7 +6,7 @@ namespace GildedRose\Item;
 
 class Sulfuras extends AbstractItem implements ItemInterface
 {
-    public function getNewQuality(): int
+    protected function getNewQuality(): int
     {
         return $this->item->quality;
     }

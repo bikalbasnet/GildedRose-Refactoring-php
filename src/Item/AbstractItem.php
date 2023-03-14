@@ -25,20 +25,10 @@ abstract class AbstractItem implements ItemInterface
         return 50;
     }
 
-    abstract public function getNewQuality(): int;
+    abstract protected function getNewQuality(): int;
 
-    public function updateSellin(): void
+    protected function updateSellin(): void
     {
         $this->item->sellIn = $this->item->sellIn - 1;
-    }
-
-    public function getQuality(): int
-    {
-        return $this->item->quality;
-    }
-
-    public function getSellIn(): int
-    {
-        return $this->item->sellIn;
     }
 }

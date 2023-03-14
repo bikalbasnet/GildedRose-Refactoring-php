@@ -19,9 +19,6 @@ final class GildedRose
         foreach ($this->items as $item) {
             $inventoryItem = InventoryItemFactory::create($item);
             $inventoryItem->updateInventory();
-
-            $item->sellIn = $inventoryItem->getSellIn();
-            $item->quality = $inventoryItem->getQuality();
         }
     }
 }
