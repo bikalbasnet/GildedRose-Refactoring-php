@@ -4,38 +4,31 @@ declare(strict_types=1);
 
 namespace GildedRose\Item;
 
-class StandardItem implements ItemInterface
+class StandardItem extends AbstractItem implements ItemInterface
 {
-    public function __construct(
-        protected int $sellIn,
-        protected int $quality,
-    ) {
-    }
-
-    public function updateItemQuality(): void
+    public function getNewQuality(): int
     {
-        if ($this->quality <= 0) {
-            return;
+        if ($this->item->quality <= 0) {
+            return $this->item->quality;
         }
 
-        $decrement = ($this->sellIn <= 0) ? 2 : 1;
+        $decrement = ($this->item->sellIn <= 0) ? 2 : 1;
 
-        $newQuality = $this->quality - $decrement;
-        $this->quality = max($newQuality, 0);
+        return $this->item->quality - $decrement;
     }
 
     public function updateSellin(): void
     {
-        $this->sellIn = $this->sellIn - 1;
+        $this->item->sellIn = $this->item->sellIn - 1;
     }
 
     public function getQuality(): int
     {
-        return $this->quality;
+        return $this->item->quality;
     }
 
     public function getSellIn(): int
     {
-        return $this->sellIn;
+        return $this->item->sellIn;
     }
 }

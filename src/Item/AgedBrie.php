@@ -4,17 +4,12 @@ declare(strict_types=1);
 
 namespace GildedRose\Item;
 
-class AgedBrie extends StandardItem implements ItemInterface
+class AgedBrie extends AbstractItem implements ItemInterface
 {
-    public function updateItemQuality(): void
+    public function getNewQuality(): int
     {
-        if ($this->quality >= 50) {
-            return;
-        }
+        $increment = ($this->item->sellIn <= 0) ? 2 : 1;
 
-        $increment = ($this->sellIn <= 0) ? 2 : 1;
-
-        $newQuality = $this->quality + $increment;
-        $this->quality = min($newQuality, 50);
+        return $this->item->quality + $increment;
     }
 }

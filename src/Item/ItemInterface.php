@@ -4,7 +4,9 @@ namespace GildedRose\Item;
 
 interface ItemInterface
 {
-    public function updateItemQuality(): void;
+    public function updateInventory(): void;
+
+    public function getNewQuality(): int;
 
     public function updateSellin(): void;
 
